@@ -14,8 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
     <link href = "styling.css" rel = "stylesheet">
     <link href = "script.js" rel = "Jscript">
-    <!--Below is the src for the google visualization-->
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
     <!--The navbar buttons. Each button has an event listener which switches to respective page-->
@@ -54,8 +52,7 @@
        Use that contact info to schedule a debate.</p>
        <h2>Add a Debate</h2>
        <!--The scheduling form to add a debate-->
-        <form name = schedulingForm id = "Scheduling_pref" method = "post" action = "https://api.sheetmonkey.io/form/mGu1q4HgQzZLqNBnfJpBQk">
-         <!--The action above sends the form info to a google sheets using sheetmonkey api-->
+        <form name = schedulingForm id = "Scheduling_pref" method = "post"></form>
          <legend><b>Scheduling preferences</b></legend>
          <br>
           <div>
@@ -101,14 +98,10 @@
        <h2>Available</h2>
        <p>Click on a debate to add yourself to it. Once you click on a debate that looks good, an email page will open with the "to" adress set to the contact email of the user that has set the debate. Use the email to contact and schedule the debate.</p>
        <!--The available table along with any table functions(filter) go here-->
-       <div id = "table"></div>
-       <br>
-        <div id = "dashboard">
-        <div id = "formatFilter"></div>
-        <div id = "experienceFilter"></div>
-        <div id = "tableDiv"></div>
+       <div id = "table">
+
        </div>
-     </div>
+     
     
     <div id = "contactDiv" class = "dark">
       <h1 class = "lHeading">Contact</h1>
@@ -120,8 +113,7 @@
     <input class = "button" type = "submit" name = "commentButton" value = "Email"/>
     </form>
     <h2>Report a User</h2>
-    <form method = "post" id = "reportForm" action = "https://api.sheetmonkey.io/form/96MJ7y4WgyUwWd55hWnyWV">
-        <!--The action above uses sheetmonkey api to send form info to a google sheets-->
+    <form method = "post" id = "reportForm">
       <label>Please fill in the name of the user you want to report:</label>
       <br>
       <label for="userReported"></label>
@@ -251,25 +243,6 @@
       navbar.classList.remove("sticky");
     }
   }
-  
-  //Following if for the google visualization
-  google.charts.load('current', {packages: ['table']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-  var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1nmOdDoaAVeN8IPATibi2xKXepq_jEEeloCkzChrOD-U/gviz/tq?range=A:F');
-  query.send(handleQueryResponse);
-}
-
-
-var cssClassNames = {hoverTableRow: 'hoverClass',headerRow: 'tableClass', tableCell: 'contentClass'};
-
-function handleQueryResponse(response) {
-  var data = response.getDataTable();
-  var chart = new google.visualization.Table(document.getElementById('table'));
-  chart.draw(data,null)
-}
-  
    </script>   
   </body>
 </html>
